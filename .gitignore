@@ -1,0 +1,29 @@
+# Binaries
+app
+go-template
+meinprogramm
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+bin/
+
+# SQLite databases
+data.db
+data.db-journal
+data.db-shm
+data.db-wal
+*.sqlite
+*.sqlite3
+*.db
+
+# Go workspace
+vendor/
+
+# OS / Editor
+.DS_Store
+.idea/
+*.swp

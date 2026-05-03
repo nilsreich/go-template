@@ -1,0 +1,52 @@
+package views
+
+templ AuthForm(mode string, errorMessage string) {
+    <div>
+        if mode == "login" {
+            <h2>Login</h2>
+        } else {
+            <h2>Register</h2>
+        }
+        if errorMessage != "" {
+            <div style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 10px;">
+                { errorMessage }
+            </div>
+        }
+        if mode == "login" {
+            <form method="POST" action="/login" style="display: flex; flex-direction: column; gap: 10px; max-width: 300px;">
+                <div>
+                    <label for="username">Username</label><br/>
+                    <input type="text" id="username" name="username" required />
+                </div>
+                <div>
+                    <label for="password">Password</label><br/>
+                    <input type="password" id="password" name="password" required />
+                </div>
+                <button type="submit">
+                    Login
+                </button>
+            </form>
+        } else {
+            <form method="POST" action="/register" style="display: flex; flex-direction: column; gap: 10px; max-width: 300px;">
+                <div>
+                    <label for="username">Username</label><br/>
+                    <input type="text" id="username" name="username" required />
+                </div>
+                <div>
+                    <label for="password">Password</label><br/>
+                    <input type="password" id="password" name="password" required />
+                </div>
+                <button type="submit">
+                    Register
+                </button>
+            </form>
+        }
+        <div style="margin-top: 20px;">
+            if mode == "login" {
+                <span>Don't have an account? <button hx-get="/register" hx-target="#content" hx-push-url="true">Register</button></span>
+            } else {
+                <span>Already have an account? <button hx-get="/login" hx-target="#content" hx-push-url="true">Login</button></span>
+            }
+        </div>
+    </div>
+}

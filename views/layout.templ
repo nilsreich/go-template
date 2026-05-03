@@ -1,0 +1,38 @@
+package views
+
+import "github.com/nilsreich/go-template/auth"
+
+templ Layout(content templ.Component) {
+    <!DOCTYPE html>
+    <html lang="de">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>HTMX Navigation</title>
+            <script src="/static/htmx.min.js"></script>
+        </head>
+        <body>
+            <nav style="padding: 10px; background: #eee;">
+                <!-- hx-push-url ändert die URL oben im Browser, hx-target sagt wo das HTML hin soll -->
+                <button hx-get="/" hx-target="#content" hx-push-url="true">Home</button>
+                <button hx-get="/about" hx-target="#content" hx-push-url="true">About</button>
+                
+                if auth.GetUserFromSession(ctx) != nil {
+                    <button hx-get="/protected" hx-target="#content" hx-push-url="true">Protected</button>
+                    <span style="margin-left: 10px;">Hallo, { auth.GetUserFromSession(ctx).Username }!</span>
+                    <form method="POST" action="/logout" style="display:inline; margin-left: 10px;">
+                        <button type="submit">Logout</button>
+                    </form>
+                } else {
+                    <button hx-get="/login" hx-target="#content" hx-push-url="true" style="margin-left: 10px;">Login</button>
+                    <button hx-get="/register" hx-target="#content" hx-push-url="true">Register</button>
+                }
+            </nav>
+
+            <main id="content" style="padding: 20px;">
+                <!-- Hier wird der dynamische Content eingefügt -->
+                @content
+            </main>
+        </body>
+    </html>
+}

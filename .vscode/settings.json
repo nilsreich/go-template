@@ -1,0 +1,6 @@
+{
+  "github.copilot.chat.customInstructions": [
+    { "file": ".github/llm-docs/templ.md" },
+    { "file": ".github/llm-docs/htmx.md" },
+  ]
+}

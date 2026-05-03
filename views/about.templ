@@ -1,0 +1,17 @@
+package views
+
+var number = 0
+
+
+
+templ About() {
+    <h2>Über uns - { number }</h2>
+    <p>Das ist die About-Seite. Wenn du hier bist, wurde das Layout nicht neu geladen!</p>
+      <script>
+    function handleClick(event) {
+        number++;
+        event.innerText = "Clicked " + number + " times";
+    }
+  </script>
+  <button onclick="handleClick(this)">Click me</button>
+}
